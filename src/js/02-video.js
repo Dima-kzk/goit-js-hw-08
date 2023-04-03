@@ -2,7 +2,7 @@ import Player from '@vimeo/player';
 import throttle from 'lodash.throttle';
 
 const CURRENT_TIME = 'videoplayer-current-time';
-const WAIT = 1000;
+const DELAY = 1000;
 
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
@@ -10,8 +10,8 @@ const player = new Player(iframe);
 player.on(
   'timeupdate',
   throttle(({ seconds }) => {
-    localStorage.setItem(CURRENT_TIME, seconds);
-  }, WAIT)
+    localStorage.setItem(CURRENT_TIME, Math.floor(seconds));
+  }, DELAY)
 );
 
 window.addEventListener('DOMContentLoaded', () => {

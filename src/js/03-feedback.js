@@ -9,6 +9,7 @@ feedbackForm.addEventListener(
   'input',
   throttle(event => {
     event.preventDefault();
+    console.log('input');
     data[event.target.name] = event.target.value;
     localStorage.setItem(FEEDBACK_STATE, JSON.stringify(data));
   }, 500)
@@ -20,7 +21,9 @@ window.addEventListener('DOMContentLoaded', () => {
     localStorage.getItem(FEEDBACK_STATE) === null
   )
     return;
+
   const temp = JSON.parse(localStorage.getItem(FEEDBACK_STATE));
+
   feedbackForm.email.value = temp.email;
   feedbackForm.message.value = temp.message;
 });
@@ -29,6 +32,7 @@ feedbackForm.addEventListener('submit', event => {
   event.preventDefault();
   feedbackForm.email.value = '';
   feedbackForm.message.value = '';
+  data = {};
   if (
     localStorage.length === 0 ||
     localStorage.getItem(FEEDBACK_STATE) === null
@@ -36,5 +40,6 @@ feedbackForm.addEventListener('submit', event => {
     return;
   const temp = JSON.parse(localStorage.getItem(FEEDBACK_STATE));
   console.log(temp);
+  console.log('data');
   localStorage.removeItem(FEEDBACK_STATE);
 });
