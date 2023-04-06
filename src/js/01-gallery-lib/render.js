@@ -1,7 +1,7 @@
-import cretTegimg from './gallery-lib';
+import createTegimg from './gallery-lib';
 
 const gallery = document.querySelector('.gallery');
 
 export default function render(galleryItems) {
-  gallery.innerHTML = galleryItems.map(cretTegimg).join('');
+  gallery.innerHTML = galleryItems.map(createTegimg).join('');
 }
